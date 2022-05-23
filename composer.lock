@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "c2aa7c517a09eb6f41c74351c9fee256",
+=======
+    "content-hash": "99afa21c8b212a5309cc872675e2b7a4",
+>>>>>>> parent of aacbb88 (Added RBAC)
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -573,6 +577,7 @@
             "time": "2017-03-13T06:30:53+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "filsh/yii2-oauth2-server",
             "version": "2.0.1",
             "source": {
@@ -705,6 +710,8 @@
             "time": "2016-09-06T17:43:18+00:00"
         },
         {
+=======
+>>>>>>> parent of aacbb88 (Added RBAC)
             "name": "fortawesome/font-awesome",
             "version": "v4.7.0",
             "source": {

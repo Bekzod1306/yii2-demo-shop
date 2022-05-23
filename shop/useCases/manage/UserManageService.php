@@ -6,13 +6,17 @@ use shop\entities\User\User;
 use shop\forms\manage\User\UserCreateForm;
 use shop\forms\manage\User\UserEditForm;
 use shop\repositories\UserRepository;
+<<<<<<< HEAD:shop/useCases/manage/UserManageService.php
 use shop\services\newsletter\Newsletter;
 use shop\services\RoleManager;
 use shop\services\TransactionManager;
+=======
+>>>>>>> parent of aacbb88 (Added RBAC):shop/services/manage/UserManageService.php
 
 class UserManageService
 {
     private $repository;
+<<<<<<< HEAD:shop/useCases/manage/UserManageService.php
     private $roles;
     private $transaction;
     /**
@@ -31,6 +35,12 @@ class UserManageService
         $this->roles = $roles;
         $this->transaction = $transaction;
         $this->newsletter = $newsletter;
+=======
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+>>>>>>> parent of aacbb88 (Added RBAC):shop/services/manage/UserManageService.php
     }
 
     public function create(UserCreateForm $form): User
@@ -41,11 +51,15 @@ class UserManageService
             $form->phone,
             $form->password
         );
+<<<<<<< HEAD:shop/useCases/manage/UserManageService.php
         $this->transaction->wrap(function () use ($user, $form) {
             $this->repository->save($user);
             $this->roles->assign($user->id, $form->role);
             $this->newsletter->subscribe($user->email);
         });
+=======
+        $this->repository->save($user);
+>>>>>>> parent of aacbb88 (Added RBAC):shop/services/manage/UserManageService.php
         return $user;
     }
 
@@ -57,10 +71,7 @@ class UserManageService
             $form->email,
             $form->phone
         );
-        $this->transaction->wrap(function () use ($user, $form) {
-            $this->repository->save($user);
-            $this->roles->assign($user->id, $form->role);
-        });
+        $this->repository->save($user);
     }
 
     public function assignRole($id, $role): void

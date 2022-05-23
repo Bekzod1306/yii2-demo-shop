@@ -13,6 +13,7 @@ return [
             'class' => 'yii\caching\FileCache',
             'cachePath' => '@common/runtime/cache',
         ],
+<<<<<<< HEAD
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'itemTable' => '{{%auth_items}}',
@@ -24,5 +25,7 @@ return [
             'class' => 'yii\queue\redis\Queue',
             'as log' => 'yii\queue\LogBehavior',
         ],
+=======
+>>>>>>> parent of aacbb88 (Added RBAC)
     ],
 ];

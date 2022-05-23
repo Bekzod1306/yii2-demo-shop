@@ -18,8 +18,11 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $form->field($model, 'username')->textInput(['maxLength' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['maxLength' => true]) ?>
+<<<<<<< HEAD
     <?= $form->field($model, 'phone')->textInput(['maxLength' => true]) ?>
     <?= $form->field($model, 'role')->dropDownList($model->rolesList()) ?>
+=======
+>>>>>>> parent of aacbb88 (Added RBAC)
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>

@@ -5,7 +5,6 @@ namespace backend\forms;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use shop\entities\User\User;
-use yii\helpers\ArrayHelper;
 
 class UserSearch extends Model
 {
@@ -15,13 +14,12 @@ class UserSearch extends Model
     public $username;
     public $email;
     public $status;
-    public $role;
 
     public function rules()
     {
         return [
             [['id', 'status'], 'integer'],
-            [['username', 'email', 'role'], 'safe'],
+            [['username', 'email'], 'safe'],
             [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d'],
         ];
     }
@@ -32,7 +30,7 @@ class UserSearch extends Model
      */
     public function search(array $params): ActiveDataProvider
     {
-        $query = User::find()->alias('u');
+        $query = User::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -46,26 +44,16 @@ class UserSearch extends Model
         }
 
         $query->andFilterWhere([
-            'u.id' => $this->id,
-            'u.status' => $this->status,
+            'id' => $this->id,
+            'status' => $this->status,
         ]);
 
-        if (!empty($this->role)) {
-            $query->innerJoin('{{%auth_assignments}} a', 'a.user_id = u.id');
-            $query->andWhere(['a.item_name' => $this->role]);
-        }
-
         $query
-            ->andFilterWhere(['like', 'u.username', $this->username])
-            ->andFilterWhere(['like', 'u.email', $this->email])
-            ->andFilterWhere(['>=', 'u.created_at', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
-            ->andFilterWhere(['<=', 'u.created_at', $this->date_to ? strtotime($this->date_to . ' 23:59:59') : null]);
+            ->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['>=', 'created_at', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
+            ->andFilterWhere(['<=', 'created_at', $this->date_to ? strtotime($this->date_to . ' 23:59:59') : null]);
 
         return $dataProvider;
-    }
-
-    public function rolesList(): array
-    {
-        return ArrayHelper::map(\Yii::$app->authManager->getRoles(), 'name', 'description');
     }
 }

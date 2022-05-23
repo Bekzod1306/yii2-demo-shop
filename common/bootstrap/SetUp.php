@@ -41,9 +41,12 @@ use yii\caching\Cache;
 use yii\di\Container;
 use yii\di\Instance;
 use yii\mail\MailerInterface;
+<<<<<<< HEAD
 use yii\rbac\ManagerInterface;
 use yii\queue\Queue;
 use yiidreamteam\upload\ImageUploadBehavior;
+=======
+>>>>>>> parent of aacbb88 (Added RBAC)
 
 class SetUp implements BootstrapInterface
 {
@@ -69,10 +72,6 @@ class SetUp implements BootstrapInterface
 
         $container->setSingleton(Cache::class, function () use ($app) {
             return $app->cache;
-        });
-
-        $container->setSingleton(ManagerInterface::class, function () use ($app) {
-            return $app->authManager;
         });
 
         $container->setSingleton(ContactService::class, [], [
